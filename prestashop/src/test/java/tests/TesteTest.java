@@ -3,6 +3,7 @@ package tests;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 //import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Map;
 
@@ -17,6 +18,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import pages.HomePage;
+import pages.ProdutoPage;
 
 public class TesteTest
 {
@@ -32,6 +34,8 @@ public class TesteTest
 		System.setProperty("webdriver.chrome.driver", "C:\\WebDrivers\\Chrome\\chromedriver.exe");
 		driver = new ChromeDriver();
 		homePage = new HomePage(driver);
+		driver.get("https://marcelodebittencourt.com/demoprestashop/");
+		driver.manage().window().maximize();
 	}
 
 	@After
@@ -43,17 +47,20 @@ public class TesteTest
 	@Test
 	public void validaTextoContactUs()
 	{
-		driver.get("https://marcelodebittencourt.com/demoprestashop/");
-		driver.manage().window().maximize();
 		assertThat(homePage.obterTextLinkContactUs(), is("Contact us"));
 	}
 
 	@Test
 	public void validaNomeProdutoTelaDetalhe_NomesIguais()
 	{
-		driver.get("https://marcelodebittencourt.com/demoprestashop/");
-		driver.manage().window().maximize();
 		String nomeProdutoHomePage = homePage.obterNomePrimeiroProduto();
 		System.out.println(nomeProdutoHomePage);
+		
+		ProdutoPage produtoPage = homePage.clicarNomePrimeiroProduto();
+		String nomeProduto = produtoPage.obterNomeProduto();
+		System.out.println(nomeProduto);
+		
+		assertThat(nomeProdutoHomePage.toLowerCase(),is (nomeProduto.toLowerCase()));
+		assertThat(nomeProdutoHomePage.toUpperCase(),is (nomeProduto.toUpperCase()));
 	}
 }

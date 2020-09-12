@@ -23,4 +23,10 @@ public class HomePage
 	{
 		return driver.findElement(nomeprimeiroProduto ).getText();
 	}
+
+	public ProdutoPage clicarNomePrimeiroProduto()
+	{
+		driver.findElement(nomeprimeiroProduto ).click();	
+		return new ProdutoPage(driver);
+	}
 }
