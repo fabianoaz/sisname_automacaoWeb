@@ -16,6 +16,5 @@ public class ProdutoPage
 	public String obterNomeProduto()
 	{
 		return driver.findElement(nomeProudto).getText();
-		
 	}
 }
