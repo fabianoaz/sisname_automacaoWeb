@@ -18,30 +18,42 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import pages.HomePage;
 
-public class TesteTest {
+public class TesteTest
+{
 	private WebDriver driver;
 	private Map<String, Object> vars;
 	JavascriptExecutor js;
-	
+
 	private HomePage homePage;
 
 	@Before
-	public void setUp() {
+	public void setUp()
+	{
 		System.setProperty("webdriver.chrome.driver", "C:\\WebDrivers\\Chrome\\chromedriver.exe");
 		driver = new ChromeDriver();
+		homePage = new HomePage(driver);
 	}
 
 	@After
-	public void tearDown() {
+	public void tearDown()
+	{
 		driver.quit();
 	}
 
 	@Test
-	public void validatextocontactus() {
+	public void validaTextoContactUs()
+	{
 		driver.get("https://marcelodebittencourt.com/demoprestashop/");
 		driver.manage().window().maximize();
-		//assertThat(driver.findElement(By.linkText("Contact us")).getText(), is("Contact us"));
-		homePage = new HomePage(driver);
-		assertThat(homePage.obterTextLinkContactUs(),is("Contact us"));
+		assertThat(homePage.obterTextLinkContactUs(), is("Contact us"));
+	}
+
+	@Test
+	public void validaNomeProdutoTelaDetalhe_NomesIguais()
+	{
+		driver.get("https://marcelodebittencourt.com/demoprestashop/");
+		driver.manage().window().maximize();
+		String nomeProdutoHomePage = homePage.obterNomePrimeiroProduto();
+		System.out.println(nomeProdutoHomePage);
 	}
 }

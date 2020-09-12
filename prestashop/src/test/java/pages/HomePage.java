@@ -7,6 +7,7 @@ public class HomePage
 {
 	private WebDriver driver;
 	private By linkContactUs = By.linkText("Contact us");
+	private By nomeprimeiroProduto = By.cssSelector("#content > section > div > article:nth-child(1) > div > div.product-description > h3 > a");
 	
 	public HomePage(WebDriver driver) 
 	{
@@ -16,5 +17,10 @@ public class HomePage
 	public String obterTextLinkContactUs()
 	{
 		return driver.findElement(linkContactUs).getText();
+	}
+
+	public String obterNomePrimeiroProduto()
+	{
+		return driver.findElement(nomeprimeiroProduto ).getText();
 	}
 }
