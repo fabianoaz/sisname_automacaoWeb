@@ -7,6 +7,11 @@ Funcionalidade: Pesquisar produto
 
   Cenario: Deve listar os produtos selecionados
     Dado que estou na pagina inicial
-    Quando preencho a poesquisa de produto com texto "t-shirt"
+    Quando preencho a poesquisa de produto com texto <pesquisa>
     E clico na lupa
-    Então lista o produto "Hummingbird Printed T-Shirt"
+    Então lista o produto <produtoEsperado>
+
+    Exemplos:
+    	| pesquisa | produtoEsperado |
+    	| "t-shirt" | "Hummingbird Printed T-Shirt" |
+    	| "sweater" | "Hummingbird Printed Sweater" |
